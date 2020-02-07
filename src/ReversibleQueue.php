@@ -17,8 +17,9 @@ class ReversibleQueue implements Reversible
 
     public function getExecutionClosure(): Closure
     {
-        return static function($value) {
-            foreach ($this->reversibles as $reversible) {
+        $reversibles = $this->reversibles;
+        return static function($value) use ($reversibles) {
+            foreach ($reversibles as $reversible) {
                 $value = $reversible->getExecutionClosure()($value);
             }
             return $value;
@@ -27,8 +28,9 @@ class ReversibleQueue implements Reversible
 
     public function getReversionClosure(): Closure
     {
-        return static function($value) {
-            foreach (array_reverse($this->reversibles) as $reversible) {
+        $reversibles = array_reverse($this->reversibles);
+        return static function($value) use ($reversibles) {
+            foreach ($reversibles as $reversible) {
                 $value = $reversible->getReversionClosure()($value);
             }
             return $value;
