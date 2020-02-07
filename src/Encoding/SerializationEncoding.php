@@ -3,8 +3,8 @@ declare(strict_types=1);
 namespace CoStack\Reversible\Encoding;
 
 use Closure;
+use CoStack\Reversible\AbstractReversible;
 use CoStack\Reversible\Exception\InvalidArgumentTypeException;
-use CoStack\Reversible\Reversible;
 use function gettype;
 use function is_array;
 use function is_object;
@@ -12,7 +12,7 @@ use function is_scalar;
 use function serialize;
 use function unserialize;
 
-class SerializationEncoding implements Reversible
+class SerializationEncoding extends AbstractReversible
 {
     public function getExecutionClosure(): Closure
     {

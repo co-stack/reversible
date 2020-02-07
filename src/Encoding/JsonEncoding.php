@@ -3,15 +3,19 @@ declare(strict_types=1);
 namespace CoStack\Reversible\Encoding;
 
 use Closure;
+use CoStack\Reversible\AbstractReversible;
+use CoStack\Reversible\Exception;
 use CoStack\Reversible\Exception\InvalidArgumentTypeException;
-use CoStack\Reversible\Reversible;
 use function gettype;
 use function is_array;
 use function is_scalar;
 use function json_decode;
 use function json_encode;
+use function json_last_error;
+use function json_last_error_msg;
+use const JSON_ERROR_NONE;
 
-class JsonEncoding implements Reversible
+class JsonEncoding extends AbstractReversible
 {
     public function getExecutionClosure(): Closure
     {
@@ -19,14 +23,26 @@ class JsonEncoding implements Reversible
             if (!(is_array($value) || is_scalar($value))) {
                 throw InvalidArgumentTypeException::create('value', 'array|scalar', gettype($value));
             }
-            return json_encode($value);
+            $value = json_encode($value);
+            if (JSON_ERROR_NONE !== json_last_error()) {
+                throw new Exception(
+                    'json_encode error: ' . json_last_error_msg()
+                );
+            }
+            return $value;
         };
     }
 
     public function getReversionClosure(): Closure
     {
         return static function(string $value) {
-            return json_decode($value, true);
+            $value = json_decode($value, true);
+            if (JSON_ERROR_NONE !== json_last_error()) {
+                throw new Exception(
+                    'json_decode error: ' . json_last_error_msg()
+                );
+            }
+            return $value;
         };
     }
 }

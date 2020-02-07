@@ -12,6 +12,6 @@ class InvalidArgumentTypeException extends Exception
 
     public static function create(string $name, string $expected, string $actual): InvalidArgumentTypeException
     {
-        return new self(self::CODE, sprintf(self::MESSAGE, $name, $expected, $actual));
+        return new self(sprintf(self::MESSAGE, $name, $expected, $actual), self::CODE);
     }
 }

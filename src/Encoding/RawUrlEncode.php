@@ -3,11 +3,11 @@ declare(strict_types=1);
 namespace CoStack\Reversible\Encoding;
 
 use Closure;
-use CoStack\Reversible\Reversible;
+use CoStack\Reversible\AbstractReversible;
 use function rawurldecode;
 use function rawurlencode;
 
-class RawUrlEncode implements Reversible
+class RawUrlEncode extends AbstractReversible
 {
     public function getExecutionClosure(): Closure
     {
