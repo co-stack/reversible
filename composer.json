@@ -1,0 +1,27 @@
+{
+  "name": "co-stack/reversible",
+  "description": "Provides portable reversible functions and queues. Can be used e.g. for transport encoding or complex value processing",
+  "type": "library",
+  "keywords": ["reversible", "reversible queue", "reversible functions", "undo"],
+  "license": "MIT",
+  "homepage": "https://co-stack.com/",
+  "support": {
+    "issues": "https://github.com/co-stack/reversible/issues",
+    "source": "https://github.com/co-stack/reversible",
+    "email": "support@co-stack.com"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "authors": [
+    {
+      "name": "Oliver Eglseder",
+      "email": "oliver.eglseder@co-stack.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "CoStack\\Reversible\\": "src"
+    }
+  }
+}
