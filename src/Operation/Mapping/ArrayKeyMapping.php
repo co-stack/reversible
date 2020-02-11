@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace CoStack\Reversible\Mapping;
+namespace CoStack\Reversible\Operation\Mapping;
 
 use Closure;
 use CoStack\Reversible\AbstractReversible;
@@ -12,7 +12,6 @@ class ArrayKeyMapping extends AbstractReversible
     private $mapping;
 
     /**
-     * ArrayKeyMapping constructor.
      * @param array $mapping Key = Numeric, Value = assoc index
      */
     public function __construct(array $mapping)

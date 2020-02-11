@@ -1,8 +1,10 @@
 <?php
 declare(strict_types=1);
-namespace CoStack\Reversible;
+namespace CoStack\Reversible\Applicable;
 
 use Closure;
+use CoStack\Reversible\AbstractReversible;
+use CoStack\Reversible\Reversible;
 use function array_reverse;
 
 class ReversiblePipe extends AbstractReversible

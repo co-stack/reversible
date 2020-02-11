@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace CoStack\Reversible\Encoding;
+namespace CoStack\Reversible\Operation\Encoding;
 
 use Closure;
 use CoStack\Reversible\AbstractReversible;

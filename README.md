@@ -36,11 +36,11 @@ $restoredInput = $encoding->reverse($output);
 
 ```php
  // Shared Library
- function getPipe(): \CoStack\Reversible\ReversiblePipe {
-    $pipe = new \CoStack\Reversible\ReversiblePipe();
-    $pipe->enqueue(new \CoStack\Reversible\Mapping\ArrayKeyMapping(['key1', 'key2', 'payload']));
-    $pipe->enqueue(new \CoStack\Reversible\RecursiveReversible(new \CoStack\Reversible\Encoding\Base64Encoding()));
-    $pipe->enqueue(new \CoStack\Reversible\Transform\ImplodeTransform());
+ function getPipe(): \CoStack\Reversible\Applicable\ReversiblePipe {
+    $pipe = new \CoStack\Reversible\Applicable\ReversiblePipe();
+    $pipe->enqueue(new \CoStack\Reversible\Operation\Mapping\ArrayKeyMapping(['key1', 'key2', 'payload']));
+    $pipe->enqueue(new \CoStack\Reversible\Applicable\ApplyOnArrayValueRecursively(new \CoStack\Reversible\Encoding\Base64Encoding()));
+    $pipe->enqueue(new \CoStack\Reversible\Operation\Transform\ImplodeTransform());
     return $pipe;
 }
  
@@ -65,8 +65,8 @@ Please notice that `ImplodeTransform` is lossy because `explode(',', implode(','
 
 ```php
 // Shared Library
-function getPipe(): \CoStack\Reversible\ReversiblePipe {
-    $pipe = new \CoStack\Reversible\ReversiblePipe();
+function getPipe(): \CoStack\Reversible\Applicable\ReversiblePipe {
+    $pipe = new \CoStack\Reversible\Applicable\ReversiblePipe();
     $pipe->enqueue(new \CoStack\Reversible\Encoding\SerializationEncoding());
     $pipe->enqueue(new \CoStack\Reversible\Encoding\UrlEncode());
     return $pipe;

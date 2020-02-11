@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace CoStack\Reversible\Transform;
+namespace CoStack\Reversible\Operation\Transform;
 
 use Closure;
 use CoStack\Reversible\AbstractReversible;
