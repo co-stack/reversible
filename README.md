@@ -81,3 +81,20 @@ $safeEncodedObject = $pipe->execute($object);
 $pipe = getPipe();
 $object = $pipe->reverse($safeEncodedObject);
 ```
+
+### UUIDv4 to binary and back (e.g. for persisting uuid as binary in databases)
+
+```php
+
+$uuid = gen_uuid();
+
+$uuidToBinary = new \CoStack\Reversible\Applicable\ReversiblePipe();
+$uuidToBinary->enqueue(new \CoStack\Reversible\Operation\Fixed\FixedStringStripping('-', [8, 4, 4, 4]));
+$uuidToBinary->enqueue(new \CoStack\Reversible\Operation\Encoding\HexToBinEncoding());
+
+$binary = $uuidToBinary->execute($uuid);
+// Persist binary uuid in DB
+
+// Select binary uuid from DB and convert to readable string again
+$uuidAgain = $uuidToBinary->reverse($binary);
+```
